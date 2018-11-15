@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div>
+      <input v-model="text" placeholder="Japanese">
+    </div>
+    <div>
+      <button id="translation" @click="click()">translation</button>
+      <button id="clear" @click="clear()">clear</button>
+    </div>
+    <p>{{ text }}</p>
+    <p>{{ info }}</p>
+  </div>
+  <script>
+    const baseURL = '/trans_api/index';
+
+    function buildUrl(value) {
+      var ret = baseURL + '?text=' + value
+      return ret
+    };
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          text: '',
+          info: ''
+        }
+      },
+      methods: {
+        click() {
+          axios
+            .get(buildUrl(this.text))
+            .then(response => {
+              this.info = response.data.resultset.result.text;
+              var timer = setInterval(function (info) {
+                var voices = speechSynthesis.getVoices();
+                console.log(info);
+                if (info != 0) {
+                  var msg = new SpeechSynthesisUtterance(info);
+                  msg.voice = voices[1];
+                  msg.lang = 'en-US';
+                  msg.volume = 1.0;
+                  msg.rate = 1.0;
+                  msg.pitch = 1.0;
+                  speechSynthesis.speak(msg);
+                  clearInterval(timer);
+                }
+              }, 1000, this.info);
+            });
+        },
+        clear() {
+          this.text = '';
+          this.info = '';
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
