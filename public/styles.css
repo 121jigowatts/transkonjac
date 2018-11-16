@@ -1,0 +1,43 @@
+.demo-header .mdl-layout__header-row {
+    background-color: #ff4081;
+    padding-left: 40px;
+    color: #fff;
+}
+.demo-main {
+    flex-shrink: 0;
+}
+
+.demo-container {
+    max-width: 1600px;
+    width: calc(100% - 16px);
+    margin: 0 auto;
+}
+
+.demo-content {
+    border-radius: 2px;
+    padding: 80px 56px;
+    margin-bottom: 80px;
+}
+
+.demo-spinner {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.demo-text {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    padding: 5px;
+}
+
+.demo-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #424242;
+    padding: 20px 40px 20px 40px;
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+}
