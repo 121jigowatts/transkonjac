@@ -1,10 +1,18 @@
-.demo-header .mdl-layout__header-row {
-    background-color: #ff4081;
-    padding-left: 40px;
-    color: #fff;
+.demo-header {
+    color: #424242;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
+
+.material-icons.md-18 {
+    color: #ff4081;
+}
+
 .demo-main {
     flex-shrink: 0;
+    margin-bottom: -50px;
 }
 
 .demo-container {
@@ -15,8 +23,9 @@
 
 .demo-content {
     border-radius: 2px;
-    padding: 80px 56px;
+    padding: 10px 56px;
     margin-bottom: 80px;
+    text-align: center;
 }
 
 .demo-spinner {
@@ -28,17 +37,17 @@
 .demo-text {
     margin-top: 16px;
     margin-bottom: 16px;
-    padding: 5px;
-    font-size: large;
+    font-size: small;
 }
 
-.demo-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #424242;
-    padding: 20px 40px 20px 40px;
-    color: #fff;
-    font-size: 10px;
+.demo-footer,
+.demo-push {
     text-align: center;
+    vertical-align: middle;
+    bottom: 0px;
 }
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
