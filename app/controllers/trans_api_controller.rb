@@ -2,7 +2,7 @@ require 'yaml'
 
 class TransApiController < ApplicationController
   def index
-    puts params['text']
+    puts 'TEXT: [' + params['text'] + ']'
 
     if params['text'] != nil then
       text = params['text']
@@ -27,7 +27,19 @@ class TransApiController < ApplicationController
     consumer = OAuth::Consumer.new(consumer_key, consumer_secret)
     endpoint = OAuth::AccessToken.new(consumer)
 
-    response = endpoint.post(url,{key: consumer_key,type: 'json',name: name, text: text})
-    render json: JSON.parse(response.body)
+    begin
+      response = endpoint.post(url,{key: consumer_key,type: 'json',name: name, text: text})
+      
+      puts response.body
+      render json: response.body
+      
+    rescue Timeout::Error => e
+      puts '>>>TIMEOUT<<<'
+      p e
+      render json: {"resultset":{"code":-1, "message":"timeout"}}
+    rescue => exception
+      p exception
+      render json: {"resultset":{"code":-1, "message":"error"}}
+    end
   end
 end
